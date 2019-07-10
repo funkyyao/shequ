@@ -22,7 +22,11 @@ public class GithubProvider {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            String str = response.body().string();
+            System.out.println(str);
+            String[] spstr = str.split("&");
+            String[] spstr2 = spstr[0].split("=");
+            return spstr2[1];
         } catch (IOException e) {
             e.printStackTrace();
         }
